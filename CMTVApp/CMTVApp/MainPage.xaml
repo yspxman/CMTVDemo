@@ -1,0 +1,169 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="CMTVApp.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:local ="clr-namespace:CMTVApp;assembly=CMTVApp"
+    xmlns:cmtv ="clr-namespace:CMTVApp;assembly=CMTVApp"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    shell:SystemTray.IsVisible="False"
+    local:TiltEffect.IsTiltEnabled="True">
+
+
+    <!-- transition -->
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:SlideTransition Mode="SlideRightFadeIn"/>
+            </toolkit:NavigationInTransition.Backward>
+
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:SlideTransition Mode="SlideLeftFadeIn"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:SlideTransition Mode="SlideRightFadeOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:SlideTransition Mode="SlideLeftFadeOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+    <phone:PhoneApplicationPage.Resources>
+
+        <local:ImageVisibilityConverter x:Key="ImageVisibility"/>
+        <cmtv:ImageVisibilityConverter x:Name="MyVisibility" />
+    </phone:PhoneApplicationPage.Resources>
+    
+    
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+
+        <!--Panorama control-->
+        <controls:Panorama Title="CMTV">
+            <controls:Panorama.Background>
+                <ImageBrush ImageSource="/CMTVApp;component/Resources/background.jpg" />
+            </controls:Panorama.Background>
+            
+            <controls:Panorama.TitleTemplate>
+                <DataTemplate>
+                    <TextBlock Text="Mobile TV" FontSize="30" Margin="15,80,0,0" />
+                </DataTemplate>
+            </controls:Panorama.TitleTemplate>
+
+            <!--Panorama item one-->
+            <controls:PanoramaItem Header="All Channels" >
+                <controls:PanoramaItem.HeaderTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="All Channels" FontSize="70" Margin="0,5,0,0" />
+                    </DataTemplate>
+                </controls:PanoramaItem.HeaderTemplate>
+                
+                <!--Double line list with text wrapping-->
+                <ListBox Name="listbox" Margin="0,0,-12,0" ItemsSource="{Binding DC_AllChannels}" SelectionChanged="ListBox_SelectionChanged" IsHitTestVisible="True" Tap="listbox_Tap">
+                    
+                    <toolkit:ContextMenuService.ContextMenu>
+                        <toolkit:ContextMenu Foreground="Black" IsZoomEnabled="False" Background="White" Opacity="0.7" Width="300" FontFamily="Segoe WP Black">
+                            <toolkit:MenuItem Header="menu 1" Click="MenuItem_Click" />
+                            <toolkit:MenuItem Header="menu 2" Click="MenuItem_Click_1"/>
+                        </toolkit:ContextMenu>
+                    </toolkit:ContextMenuService.ContextMenu>
+                    
+                    <ListBox.ItemTemplate>
+ 
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,17">
+                                
+                                <StackPanel Width="380">
+                                    <TextBlock Text="{Binding Path=ChannelName}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding CurrentContentName}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                        <TextBlock Text="{Binding CurrentContentTimeDuration}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <Image Height="23" Width="23"  Margin="1,0,9,0" Source="Resources/star.png" Stretch="Fill"
+                                       Visibility="{Binding IsFavorite, Converter={StaticResource ImageVisibility}}" />
+                                
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </controls:PanoramaItem>
+
+            <!--Panorama item two-->
+            <!--Use 'Orientation="Horizontal"' to enable a panel that lays out horizontally-->
+            <controls:PanoramaItem Header="My favorites">
+                <!--Double line list with image placeholder and text wrapping-->
+
+                <ListBox Margin="0,0,-12,0" ItemsSource="{Binding DC_Favorite}" Name="LbFavorite" SelectionChanged="FavoriteList_SelectionChanged">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate >
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,17">
+                                <!--Replace rectangle with image-->
+         
+                                <StackPanel Width="311">
+                                    <TextBlock Text="{Binding ChannelName}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding CurrentContentName}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                        <TextBlock Text="{Binding CurrentContentTimeDuration}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                                   
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </controls:PanoramaItem>
+
+
+
+            <!--Panorama item three-->
+            <controls:PanoramaItem Header="Reminder">
+
+                <ListBox Name="LbRec" Margin="0,0,-12,0" ItemsSource="{Binding DataChannel}" IsHitTestVisible="True">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="0,0,0,17" Width="432" Height="78" IsHitTestVisible="False">
+                                <TextBlock Text="{Binding LineOne}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                                <TextBlock Text="{Binding LineTwo}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+            </controls:PanoramaItem>
+        </controls:Panorama>
+    </Grid>
+
+
+    <!--Sample code showing usage of ApplicationBar-->
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar Mode="Minimized" Opacity="0.8" IsVisible="True" IsMenuEnabled="True" >
+            <!--shell:ApplicationBarIconButton IconUri="Resources/add.png" Text="Program List" Click="AppBarProgramLst_Click" /-->
+            
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="Program List" Click="MenuItem_ProgramLst_Click"/>
+                <shell:ApplicationBarMenuItem Text="Package Management" Click="MenuItem_PackageMgt_Click"/>
+                <shell:ApplicationBarMenuItem Text="Search" Click="MenuItem_Search_Click"/>
+                <shell:ApplicationBarMenuItem Text="Emergency broadcast" Click="MenuItem_Emergency_Click"/>
+                <shell:ApplicationBarMenuItem Text="Setting" Click="MenuItem_Setting_Click"/>
+                <shell:ApplicationBarMenuItem Text="Help" Click="MenuItem_Help_Click"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+
+    </phone:PhoneApplicationPage.ApplicationBar>
+    
+</phone:PhoneApplicationPage>

@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010 Express for Windows Phone
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMTVApp", "CMTVApp\CMTVApp\CMTVApp.csproj", "{FB66941D-3C37-4231-96FD-B9255AC0072E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMTVEngine", "CMTVEngine\CMTVEngine\CMTVEngine.csproj", "{3A1B9E1E-CAAB-4A7D-BBBE-BC94BAB3125B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMTVDataBase", "CMTVDataBase\CMTVDataBase\CMTVDataBase.csproj", "{BA28FBF2-8647-47E2-A637-C35F402C6A75}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FB66941D-3C37-4231-96FD-B9255AC0072E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB66941D-3C37-4231-96FD-B9255AC0072E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB66941D-3C37-4231-96FD-B9255AC0072E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{FB66941D-3C37-4231-96FD-B9255AC0072E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB66941D-3C37-4231-96FD-B9255AC0072E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB66941D-3C37-4231-96FD-B9255AC0072E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{3A1B9E1E-CAAB-4A7D-BBBE-BC94BAB3125B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A1B9E1E-CAAB-4A7D-BBBE-BC94BAB3125B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A1B9E1E-CAAB-4A7D-BBBE-BC94BAB3125B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A1B9E1E-CAAB-4A7D-BBBE-BC94BAB3125B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA28FBF2-8647-47E2-A637-C35F402C6A75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA28FBF2-8647-47E2-A637-C35F402C6A75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA28FBF2-8647-47E2-A637-C35F402C6A75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA28FBF2-8647-47E2-A637-C35F402C6A75}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

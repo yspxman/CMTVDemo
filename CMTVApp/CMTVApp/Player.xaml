@@ -1,0 +1,88 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="CMTVApp.player"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:local ="clr-namespace:CMTVApp;assembly=CMTVApp"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Landscape" Orientation="Landscape"
+    mc:Ignorable="d" shell:SystemTray.IsVisible="False" d:DesignHeight="480" d:DesignWidth="800"
+    local:TiltEffect.IsTiltEnabled="True">
+
+    <!-- transition -->
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:SlideTransition Mode="SlideRightFadeIn"/>
+            </toolkit:NavigationInTransition.Backward>
+
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:SlideTransition Mode="SlideLeftFadeIn"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:SlideTransition Mode="SlideRightFadeOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:SlideTransition Mode="SlideLeftFadeOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <!--Sample code showing usage of ApplicationBar-->
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
+                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
+    <Grid Height="Auto" Name="grid1" Width="Auto" Background="Black">
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Vertical">
+            <TextBlock Height="53"
+                   HorizontalAlignment="Left"
+                   Margin="5,12,0,12" 
+                   Name="textBlock1"
+                   Text="" 
+                   VerticalAlignment="Center" 
+                   Width="133" />
+            
+                <TextBlock  Height="30" HorizontalAlignment="Left" 
+                            Margin="5,12,0,12" Name="tb_timeline" Text="" 
+                            VerticalAlignment="Top" Width="103" />
+
+                <TextBlock  Height="30" HorizontalAlignment="Left" 
+                            Margin="5,12,0,12" Name="tb_Status" Text="" 
+                            VerticalAlignment="Top" Width="103" />
+                
+                <Button Content=">>" Height="70" HorizontalAlignment="Left" 
+                        Margin="0,12,0,12" Name="buttonPlay" VerticalAlignment="Center" 
+                        Width="107" Click="buttonPlay_Click" />
+
+            </StackPanel>
+            <MediaElement HorizontalAlignment="Center"
+                          Name="MediaPlayer" VerticalAlignment="Center" 
+                           BufferingProgressChanged="MediaPlayer_BufferingProgressChanged"
+                           MediaEnded="MediaPlayer_MediaEnded" MediaFailed="MediaPlayer_MediaFailed"
+                           MediaOpened="MediaPlayer_MediaOpened"
+                           Unloaded="MediaPlayer_Unloaded" Stretch="UniformToFill"
+                            CurrentStateChanged="MediaPlayer_CurrentStateChanged" />
+          
+        </StackPanel>
+    </Grid>
+</phone:PhoneApplicationPage>

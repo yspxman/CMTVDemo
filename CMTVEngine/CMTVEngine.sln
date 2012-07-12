@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010 Express for Windows Phone
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMTVEngine", "CMTVEngine\CMTVEngine.csproj", "{3A1B9E1E-CAAB-4A7D-BBBE-BC94BAB3125B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3A1B9E1E-CAAB-4A7D-BBBE-BC94BAB3125B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A1B9E1E-CAAB-4A7D-BBBE-BC94BAB3125B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A1B9E1E-CAAB-4A7D-BBBE-BC94BAB3125B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A1B9E1E-CAAB-4A7D-BBBE-BC94BAB3125B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

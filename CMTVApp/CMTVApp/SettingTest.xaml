@@ -1,0 +1,101 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="CMTVApp.SettingTest"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="False">
+
+    <!-- transition -->
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:SlideTransition Mode="SlideRightFadeIn"/>
+            </toolkit:NavigationInTransition.Backward>
+            
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:SlideTransition Mode="SlideLeftFadeIn"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:SlideTransition Mode="SlideRightFadeOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:SlideTransition Mode="SlideLeftFadeOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+    
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="#FF0F6C6C">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock x:Name="ApplicationTitle" Text="Channel Management" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock x:Name="PageTitle" Text="page name" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Height="94" Width="457" />
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Margin="12,158,12,3" Grid.RowSpan="2">
+            <Button Content="Update" Height="72" HorizontalAlignment="Left" Margin="0,479,0,0" Name="btUpdate" VerticalAlignment="Top" Width="140" Click="btUpdate_Click" />
+            <TextBlock Height="31" HorizontalAlignment="Left" Margin="8,13,0,0" Name="textBlock2" Text="Name" VerticalAlignment="Top" Width="147" />
+            <TextBlock Height="52" HorizontalAlignment="Left" Margin="6,90,0,0" Name="textBlock4" Text="Description" TextWrapping="Wrap" VerticalAlignment="Top" Width="113" />
+            <TextBox Height="72" HorizontalAlignment="Left" Margin="137,0,0,0" Name="txName" Text="" VerticalAlignment="Top" Width="193" TextWrapping="Wrap" />
+            <TextBox Height="126" HorizontalAlignment="Left" Margin="137,61,0,0" Name="txDesp" Text="" VerticalAlignment="Top" Width="312" TextWrapping="Wrap" />
+            <CheckBox Content="Free" Height="72" HorizontalAlignment="Left" Margin="309,193,0,0" Name="cbFree" VerticalAlignment="Top" />
+            <TextBlock Height="31" HorizontalAlignment="Left" Margin="12,209,0,0" Name="textBlock1" Text="Genre" VerticalAlignment="Top" Width="83" />
+            <TextBox Height="72" HorizontalAlignment="Left" Margin="137,193,0,0" Name="txGenre" Text="" VerticalAlignment="Top" Width="166" TextWrapping="Wrap" />
+            <TextBlock Height="31" HorizontalAlignment="Left" Margin="12,317,0,0" Name="textBlock3" Text="Extention" VerticalAlignment="Top" Width="83" />
+            <ListBox Name="LstboxExt" Height="119" HorizontalAlignment="Left" 
+                     Margin="10,354,0,0" VerticalAlignment="Top" 
+                     Width="85" BorderBrush="#00EB1E1E" 
+                     AllowDrop="False" BorderThickness="12"
+                     ItemsSource="{Binding}" SelectionChanged="LstboxExt_SelectionChanged">
+
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding ID}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <TextBlock Height="31" HorizontalAlignment="Left" Margin="141,383,0,0" Name="textBlock5" Text="Desp" VerticalAlignment="Top" Width="58" />
+            <TextBox Height="81" HorizontalAlignment="Left" Margin="193,382,0,0" Name="txExtDesp" Text="" VerticalAlignment="Top" Width="233" TextWrapping="Wrap" />
+            <TextBlock Height="31" HorizontalAlignment="Left" Margin="141,316,0,0" Name="textBlock6" Text="URL" VerticalAlignment="Top" Width="58" />
+            <TextBox Height="81" HorizontalAlignment="Left" Margin="193,307,0,0" Name="txExtURL" Text="" VerticalAlignment="Top" Width="233" TextWrapping="Wrap" />
+            <Button Content="Fragment" Height="72" HorizontalAlignment="Left" Margin="143,479,0,0" Name="button1" VerticalAlignment="Top" Width="160" Click="button1_Click" />
+            <Button Content="PreviewData" Height="72" HorizontalAlignment="Left" Margin="247,535,0,0" Name="button2" VerticalAlignment="Top" Width="202" Click="button2_Click" />
+        </Grid>
+    </Grid>
+ 
+    <!--Sample code showing usage of ApplicationBar-->
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
+                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
+
+</phone:PhoneApplicationPage>
