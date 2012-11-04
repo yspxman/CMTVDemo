@@ -1,0 +1,11 @@
+*.suo
+/CMTVApp/*.suo
+/CMTVDataBase/*.suo
+/CMTVEngine/*.suo
+/CMTVEngine/CMTVEngine/*.user
+/CMTVDataBase/CMTVDataBase/*.user
+/CMTVApp/CMTVApp/*.user
+/CMTVApp/CMTVApp/obj
+/CMTVApp/CMTVApp/Bin
+obj
+Bin
